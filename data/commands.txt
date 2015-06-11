@@ -1,0 +1,68 @@
+install deps
+go get github.com/gorilla/sessions
+
+run api binary
+go run bin/main.go -d="weakgame-api" -u="root" -h="localhost" -P="3306"
+
+
+
+-- Creates a user
+POST
+http://localhost:8080/users
+{"email": "test2@test2.com", "password":"test123"}
+
+-- Login a user
+POST
+http://localhost:8080/users/login
+{"email": "test@test.com", "password":"test123"}
+
+-- Gets a user session, if there is one (Stateful, uses session login creates)
+GET
+http://localhost:8080/users/login
+
+-- Gets the cost of revival for a user
+GET
+http://localhost:8080/users/revive
+
+-- Requests a revive of a character
+POST
+http://localhost:8080/users/revive
+
+
+-- Get user info by id
+GET
+http://localhost:8080/users/1
+
+-- Get monster by id
+GET
+http://localhost:8080/monsters/1
+
+-- Gets all products
+GET
+http://localhost:8080/products
+
+-- Get a single product by id
+GET
+http://localhost:8080/products/1
+
+-- Purchases a product
+POST
+http://localhost:8080/products/purchase/1
+
+-- Get a new fight (Stateful, uses session)
+GET
+http://localhost:8080/fights/random
+
+-- Get a fight round (Stateful, uses session)
+GET
+http://localhost:8080/fights/round
+
+
+
+
+
+
+
+
+
+
