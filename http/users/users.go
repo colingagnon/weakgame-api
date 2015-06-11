@@ -174,7 +174,7 @@ func PostRevive(res http.ResponseWriter, req *http.Request) {
 }
 
 func CalculateHp(level int32) int32 {
-    return int32(2.00 + (float32(3.00 * level) * float32(1 + 0.06)))
+    return int32(2.00 + (float32(3.00 * level) * float32(1 + 0.08)))
 }
 
 func CalculateFee(level float64) float64 {

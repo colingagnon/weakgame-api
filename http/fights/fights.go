@@ -121,7 +121,11 @@ func GetRound(res http.ResponseWriter, req *http.Request) {
 		
 		// Get monster information
 		// Now we can get our monster between levels
-		monster, _ := monsters.GetById(fight.Id);
+		monster, err := monsters.GetById(fight.Monsterid);
+		if err != nil {
+			log.Println(err)
+			return
+		}
 		
 		// User attacks
 		var userBaseAccuracy, userBaseDodge float32 = 0.5, 0.05
@@ -187,7 +191,6 @@ func GetRound(res http.ResponseWriter, req *http.Request) {
 			enc.Encode(fight)
 			
 			// Remove fight
-			// TODO BROKEN
 			err := fights.DeleteById(uint32(fight.Id))
 			if err != nil {
 				fmt.Println("Failed to properly close fight");

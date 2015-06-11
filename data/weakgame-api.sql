@@ -1,11 +1,11 @@
 -- autoapi -d="weakgame-api" -u="root" -h="localhost" -P="3306"
 -- go run bin/main.go -d="weakgame-api" -u="root" -h="localhost" -P="3306"
-CREATE DATABASE IF NOT EXISTS mockprocessor;
--- CREATE USER 'mockprocessor'@'localhost' IDENTIFIED BY 'omgsosecretpass';
--- GRANT ALL PRIVILEGES ON mockprocessor . * TO 'mockprocessor'@'localhost';
--- FLUSH PRIVILEGES;
+-- go run bin/main.go -d="weakgame-api" -u="weakgame" -h="localhost" -P="3306"
 
--- go run bin/main.go -d="weakgame-api" -u="weakgame-api" -h="192.168.2.13" -P="3306"
+-- CREATE DATABASE IF NOT EXISTS `weakgame-api`;
+-- CREATE USER 'weakgame'@'localhost' IDENTIFIED BY 'weakpass';
+-- GRANT ALL PRIVILEGES ON `weakgame-api` . * TO 'weakgame'@'localhost';
+-- FLUSH PRIVILEGES;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `fights`;
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=2;
 
 INSERT INTO `users` (`id`, `email`, `password`, `createdOn`, `unicorns`, `hp`) VALUES
-    (1, 'test@test.com', sha2('test123', 256), now(), 0, 5);
+    (1, 'test@test.com', sha2('test123', 256), now(), 5, 5);
 
 CREATE TABLE IF NOT EXISTS `monsters` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -44,18 +44,18 @@ CREATE TABLE IF NOT EXISTS `monsters` (
 INSERT INTO `monsters` (`id`, `url`, `monsterLevel`, `hp`, `accuracy`, `dodge`, `damageLow`, `damageHigh`, `experiencePoints`) VALUES
 
 -- Level 1
-  -- (null, 'slimeblue.jpg', 1, 2, 0.60, 0.00, 0, 1, 6),
-  (null, 'npc_scaryprofessor.jpg', 1, 1000, 0.90, 0.20, 1, 1, 1000),
+  (null, 'slimeblue.jpg', 1, 2, 0.45, 0.00, 0, 1, 6),
+  (null, 'npc_scaryprofessor.jpg', 1, 1000, 0.50, 0.00, 1, 1, 1000),
 
-  -- (null, 'goblinlittle.jpg', 1, 3, 0.50, 0.20, 1, 1, 6),
-  -- (null, 'animaldemonratthing.jpg', 1, 4, 0.30, 0.40, 1, 1, 6),
+  (null, 'goblinlittle.jpg', 1, 3, 0.50, 0.15, 1, 1, 6),
+  (null, 'animaldemonratthing.jpg', 1, 5, 0.30, 0.20, 1, 1, 6),
   
 -- Level 2
   (null, 'slimegreen.jpg', 2, 5, 0.80, 0.10, 0, 1, 9),
   (null, 'goblin2010a.jpg', 2, 6, 0.60, 0.20, 1, 2, 9),
   
 -- Level 3
-  (null, 'undead_deathwing.jpg', 3, 3, 0.40, 0.20, 1, 2, 15),
+  (null, 'undead_deathwing.jpg', 3, 5, 0.30, 0.15, 1, 2, 15),
   (null, 'slimebubble.jpg', 3, 7, 0.40, 0.10, 0, 3, 17),
   
 -- Level 4
@@ -63,11 +63,11 @@ INSERT INTO `monsters` (`id`, `url`, `monsterLevel`, `hp`, `accuracy`, `dodge`, 
   (null, 'npcgnome_enchanter_by_chrismcfann-d47s5se.jpg', 4, 3, 0.60, 0.25, 0, 2, 34),
 
 -- Level 5
-  (null, 'goblinhob.jpg', 5, 8, 0.60, 0.10, 0, 6, 52),
-  (null, 'undead_skeletonguardian.jpg', 5, 9, 0.70, 0.15, 1, 4, 54),
+  (null, 'goblinhob.jpg', 5, 8, 0.55, 0.10, 0, 6, 52),
+  (null, 'undead_skeletonguardian.jpg', 5, 9, 0.60, 0.15, 1, 4, 54),
 
 -- Level 6
-  (null, 'animal_werewolf.jpg', 6, 15, 0.80, 0.30, 1, 3, 82),
+  (null, 'animal_werewolf.jpg', 6, 12, 0.70, 0.25, 1, 3, 82),
   (null, 'orc_warrior_by_dimelife-d6cn5qh.jpg', 6, 23, 0.60, 0.20, 0, 4, 91),
   
 -- Level 7
@@ -75,19 +75,19 @@ INSERT INTO `monsters` (`id`, `url`, `monsterLevel`, `hp`, `accuracy`, `dodge`, 
   (null, 'undead_Skeletal_Tomb_Guardian.jpg', 7, 33, 0.40, 0.20, 0, 8, 150),
   
 -- Level 8
-  (null, 'golem_UH_Stone_Giant_Runecarver.jpg', 8, 70, 0.40, 0.00, 0, 8, 215),
+  (null, 'golem_UH_Stone_Giant_Runecarver.jpg', 8, 60, 0.35, 0.00, 0, 8, 215),
   (null, 'slime_gelcube.jpg', 8, 36, 0.40, 0.50, 2, 3, 210),
 
 -- Level 9
   (null, 'slimeBlackooze.jpg', 9, 43, 0.70, 0.25, 0, 3, 380),
-  (null, 'slimemetal.jpg', 9, 10, 0.60, 0.35, 2, 4, 600),
+  (null, 'slimemetal.jpg', 9, 10, 0.60, 0.45, 2, 4, 420),
   
 -- Level 10
-  (null, 'slimeblueking.jpg', 10, 90, 0.80, 0.05, 0, 12, 800),
-  (null, 'animalowlbear2.jpg', 10, 60, 0.70, 0.40, 0, 8, 745),
+  (null, 'slimeblueking.jpg', 10, 90, 0.80, 0.05, 0, 12, 500),
+  (null, 'animalowlbear2.jpg', 10, 60, 0.70, 0.40, 0, 8, 550),
   
 -- Level 11
-  (null, 'slimebubblemetal.jpg', 11, 16, 0.80, 0.40, 4, 6, 2600),
+  (null, 'slimebubblemetal.jpg', 11, 16, 0.80, 0.45, 4, 6, 800),
   (null, 'animaldnd___hook_horror_by.jpg', 11, 110, 0.80, 0.40, 4, 12, 1380),
   
 -- Level 12
@@ -111,16 +111,16 @@ INSERT INTO `monsters` (`id`, `url`, `monsterLevel`, `hp`, `accuracy`, `dodge`, 
   (null, 'golem061b8fbf36346a0879a25bcb5f3e8601.jpg', 16, 320, 0.70, 0.00, 15, 25, 12000),
 
 -- Level 17
-  (null, 'demon_20fe6fd3d422bffc2ff696702f243d5c.jpg', 17, 500, 0.80, 0.10, 0, 20, 15000),
-  (null, 'demon_01c6b6eae9ddf3efa205d2d807eb71cc.jpg', 17, 300, 0.60, 0.45, 8, 16, 16000),
+  (null, 'demon_20fe6fd3d422bffc2ff696702f243d5c.jpg', 17, 300, 0.80, 0.10, 0, 20, 15000),
+  (null, 'demon_01c6b6eae9ddf3efa205d2d807eb71cc.jpg', 17, 250, 0.60, 0.45, 8, 16, 16000),
   
 -- Level 18
-  (null, 'demon_1905d3974265c0089a56b6de3d20815e.jpg', 18, 400, 0.70, 0.45, 8, 20, 21000),
-  (null, 'slimemonstrous.jpg', 18, 600, 0.80, 0.10, 4, 12, 22000),
+  (null, 'demon_1905d3974265c0089a56b6de3d20815e.jpg', 18, 3000, 0.70, 0.45, 8, 20, 21000),
+  (null, 'slimemonstrous.jpg', 18, 350, 0.80, 0.10, 4, 12, 22000),
   
 -- Level 19
-  (null, 'demon_Demon4.jpg', 19, 900, 1.05, 0.20, 350, 400, 25000),
-  (null, 'npc531b770cfa9d59713c9b31c107d728e8.jpg', 19, 400, 0.90, 0.50, 4, 30, 25000),
+  (null, 'demon_Demon4.jpg', 19, 400, 1.05, 0.20, 350, 400, 25000),
+  (null, 'npc531b770cfa9d59713c9b31c107d728e8.jpg', 19, 300, 0.90, 0.50, 4, 30, 25000),
 
 -- Level 20+
   (null, 'undead_20150327224259-WL_2.jpg', 20, 600, 1.05, 0.50, 10, 80, 30000),
