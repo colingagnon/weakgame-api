@@ -15,8 +15,27 @@ import (
 	"github.com/colingagnon/weakgame-api/db/mysql/products"
 	dbi "github.com/colingagnon/weakgame-api/dbi/products"
 	users "github.com/colingagnon/weakgame-api/db/mysql/users"
+	usersDbi "github.com/colingagnon/weakgame-api/dbi/users"
 	"github.com/colingagnon/weakgame-api/lib"
 )
+
+// Fetches or creates an account for the user
+func GetAccount(user *usersDbi.User) (*lib.Account, error) {
+	account, _ := lib.GetAccount(user.Email)
+
+	if (account == nil) {
+		// Create account			
+		err := lib.PostAccount(user.Email)
+		if err != nil {
+			return account, nil
+		}
+		
+		account, _ := lib.GetAccount(user.Email)
+		return account, nil
+	}
+	
+	return account, nil
+}
 
 func Purchase(res http.ResponseWriter, req *http.Request) {
 	var authId int;
@@ -41,12 +60,20 @@ func Purchase(res http.ResponseWriter, req *http.Request) {
 		
 		id := uint32(i)
 	
-		product, get_err := products.GetById(id)
-		if get_err != nil {
-			fmt.Println(get_err)
-			fmt.Fprintln(res, get_err)
+		product, err := products.GetById(id)
+		if err != nil {
+			fmt.Println(err)
+			fmt.Fprintln(res, err)
 			return
 		}
+		
+		// Now we need to make a charge against our mock processor
+		
+		// Super hacky, we don't actually care about account return at this point
+		_, err = GetAccount(user)
+		
+		// Post transaction
+		err = lib.PostTransaction(user.Email, product.Price)
 		
 		user.Unicorns += product.Tokens
 		
