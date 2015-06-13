@@ -131,6 +131,14 @@ func List(res http.ResponseWriter, req *http.Request) {
 			filterObject.Price = parsedField
 		}
 
+		if _, ok := req.Form["discount"]; ok {
+			form_discount := req.FormValue("discount")
+			shouldFilter = true
+			i, _ := strconv.Atoi(form_discount)
+			parsedField := int32(i)
+			filterObject.Discount = parsedField
+		}
+
 		if _, ok := req.Form["available"]; ok {
 			form_available := req.FormValue("available")
 			shouldFilter = true

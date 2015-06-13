@@ -146,18 +146,37 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(256) default 'Product',
   `tokens` int NOT NULL,
   `price` float(8,2) NOT NULL,
+  `discount` int NOT NULL,
   `available` enum('n', 'y') default 'n',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5;
 
-INSERT INTO `products` (`id`, `name`, `tokens`, `price`, `available`) VALUES
-  (1, 'Basic Package', 10, 5, 'y'),
-  (2, 'More Package', 20, 10, 'y'),
-  (3, 'Large Package', 40, 20, 'y'),
-  (4, 'Super Package', 80, 40, 'y');
+INSERT INTO `products` (`id`, `name`, `tokens`, `price`, `discount`, `available`) VALUES
+  (1, 'Basic Package', 10, 5, 0, 'y'),
+  (2, 'More Package', 20, 10, 0, 'y'),
+  (3, 'Large Package', 40, 20, 0, 'y'),
+  (4, 'Super Package', 80, 40, 0, 'y');
 
 ALTER TABLE `fights`
 ADD CONSTRAINT `fights_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 ALTER TABLE `fights`
 ADD CONSTRAINT `fights_ibfk_2` FOREIGN KEY (`monsterId`) REFERENCES `monsters` (`id`);
+
+DROP TRIGGER IF EXISTS `discount_checker_insert`;
+DELIMITER //
+CREATE TRIGGER `discount_checker_insert` BEFORE INSERT ON `products`
+ FOR EACH ROW IF (NEW.discount < 0 OR NEW.discount > 25) THEN
+  SIGNAL SQLSTATE '12345' SET MESSAGE_TEXT = 'The largest discount is a maximum of 25%';
+END IF
+//
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS `discount_checker_update`;
+DELIMITER //
+CREATE TRIGGER `discount_checker_update` BEFORE UPDATE ON `products`
+ FOR EACH ROW IF (NEW.discount < 0 OR NEW.discount > 25) THEN
+  SIGNAL SQLSTATE '12345' SET MESSAGE_TEXT = 'The largest discount is a maximum of 25%';
+END IF
+//
+DELIMITER ;

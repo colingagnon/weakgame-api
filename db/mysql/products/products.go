@@ -22,7 +22,7 @@ var DB lib.DB
 var cache = map[uint32]*dbi.Product{}
 
 func FindWithWhere(where string, params ...interface{}) ([]*dbi.Product, error) {
-	rows, err := DB.Query("SELECT id,name,tokens,price,available FROM products "+where, params...)
+	rows, err := DB.Query("SELECT id,name,tokens,price,discount,available FROM products "+where, params...)
 	if err != nil {
 		return nil, err
 	}
@@ -34,6 +34,7 @@ func FindWithWhere(where string, params ...interface{}) ([]*dbi.Product, error) 
 			&r.Name,
 			&r.Tokens,
 			&r.Price,
+			&r.Discount,
 			&r.Available,
 		)
 
@@ -51,13 +52,14 @@ func All() ([]*dbi.Product, error) {
 func GetById(id uint32) (*dbi.Product, error) {
 
 	row := &dbi.Product{}
-	err := DB.QueryRow("SELECT id,name,tokens,price,available FROM products WHERE id = ?",
+	err := DB.QueryRow("SELECT id,name,tokens,price,discount,available FROM products WHERE id = ?",
 		id,
 	).Scan(
 		&row.Id,
 		&row.Name,
 		&row.Tokens,
 		&row.Price,
+		&row.Discount,
 		&row.Available,
 	)
 	if err != nil {
@@ -88,6 +90,11 @@ func Find(products *dbi.Product) ([]*dbi.Product, error) {
 	if products.Price != 0 {
 		where = append(where, "price = ?")
 		params = append(params, products.Price)
+	}
+
+	if products.Discount != 0 {
+		where = append(where, "discount = ?")
+		params = append(params, products.Discount)
 	}
 
 	// TODO changed from byte[] array that was generated
@@ -122,11 +129,12 @@ func Save(row *dbi.Product) error {
 		return lib.Error("Preconditions failed, Price must be set.")
 	}
 	fmt.Println()
-	_, err := DB.Exec("INSERT products VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE id = VALUES(id),name = VALUES(name),tokens = VALUES(tokens),price = VALUES(price),available = VALUES(available)",
+	_, err := DB.Exec("INSERT products VALUES(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE id = VALUES(id),name = VALUES(name),tokens = VALUES(tokens),price = VALUES(price),discount = VALUES(discount),available = VALUES(available)",
 		row.Id,
 		row.Name,
 		row.Tokens,
 		row.Price,
+		row.Discount,
 		row.Available,
 	)
 	if err != nil {
