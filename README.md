@@ -8,17 +8,32 @@ WEAKGAME - Is an "almost" fun game that can be used as a training platform or te
 
 #### Setup
 Once you have GO setup properly, proceed with setup
-
 ```
 mkdir -p $GOPATH/src/github.com/colingagnon
 cd $GOPATH/src/github.com/colingagnon
 git clone https://github.com/colingagnon/weakgame-api.git
 cd weakgame-api
+go get github.com/gorilla/mux
+go get github.com/dgrijalva/jwt-go
+go get github.com/howeyc/gopass
+go get github.com/ziutek/mymysql/godrv
+go get is-a-dev.com/autoapi
 ```
 
-Now you need to create a mysql database and user
-Then import the file at: data/weakgame-api.sql
+Connect to mysql and run this as a user with grant (or change as needed)
+```
+CREATE DATABASE IF NOT EXISTS `weakgame-api`;
+CREATE USER 'weakgame'@'localhost' IDENTIFIED BY 'weakpass';
+GRANT ALL PRIVILEGES ON `weakgame-api` . * TO 'weakgame'@'localhost';
+FLUSH PRIVILEGES;
+```
 
+Now import the database with the user you have just created
+```
+mysql -u weakgame -pweakpass weakgame-api < data/weakgame-api.sql
+```
+
+Finally run the binary for the backend
 ```
 cd $GOPATH/src/github.com/colingagnon/weakgame-api
 go run bin/main.go -d="weakgame-api" -u="weakgame" -h="localhost" -P="3306"
