@@ -12,11 +12,11 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/colingagnon/weakgame-api/db/mysql/products"
-	dbi "github.com/colingagnon/weakgame-api/dbi/products"
-	users "github.com/colingagnon/weakgame-api/db/mysql/users"
-	usersDbi "github.com/colingagnon/weakgame-api/dbi/users"
-	"github.com/colingagnon/weakgame-api/lib"
+	"github.com/cybermtl/weakgame-api/db/mysql/products"
+	dbi "github.com/cybermtl/weakgame-api/dbi/products"
+	users "github.com/cybermtl/weakgame-api/db/mysql/users"
+	usersDbi "github.com/cybermtl/weakgame-api/dbi/users"
+	"github.com/cybermtl/weakgame-api/lib"
 )
 
 // Fetches or creates an account for the user

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	dbi "github.com/colingagnon/weakgame-api/dbi/products"
+	dbi "github.com/cybermtl/weakgame-api/dbi/products"
 	"is-a-dev.com/autoapi/lib"
 	//"errors"
 )

@@ -13,14 +13,14 @@ import (
 	"math/rand"
 	"time"
 	
-	"github.com/colingagnon/weakgame-api/lib"
+	"github.com/cybermtl/weakgame-api/lib"
 	
 	"github.com/gorilla/mux"
-	users "github.com/colingagnon/weakgame-api/db/mysql/users"
-	monsters "github.com/colingagnon/weakgame-api/db/mysql/monsters"
+	users "github.com/cybermtl/weakgame-api/db/mysql/users"
+	monsters "github.com/cybermtl/weakgame-api/db/mysql/monsters"
 	
-	"github.com/colingagnon/weakgame-api/db/mysql/fights"
-	dbi "github.com/colingagnon/weakgame-api/dbi/fights"	
+	"github.com/cybermtl/weakgame-api/db/mysql/fights"
+	dbi "github.com/cybermtl/weakgame-api/dbi/fights"	
 )
 
 // Create random number seed
