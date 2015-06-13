@@ -153,9 +153,9 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 INSERT INTO `products` (`id`, `name`, `tokens`, `price`, `discount`, `available`) VALUES
   (1, 'Basic Package', 10, 5, 0, 'y'),
-  (2, 'More Package', 20, 10, 0, 'y'),
-  (3, 'Large Package', 40, 20, 0, 'y'),
-  (4, 'Super Package', 80, 40, 0, 'y');
+  (2, 'More Package', 20, 10, 5, 'y'),
+  (3, 'Large Package', 40, 20, 15, 'y'),
+  (4, 'Super Package', 80, 40, 25, 'y');
 
 ALTER TABLE `fights`
 ADD CONSTRAINT `fights_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
