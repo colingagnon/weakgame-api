@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"strings"
 
-	fightsdb "github.com/colingagnon/weakgame-api/db/mysql/fights"
-	monstersdb "github.com/colingagnon/weakgame-api/db/mysql/monsters"
-	productsdb "github.com/colingagnon/weakgame-api/db/mysql/products"
-	usersdb "github.com/colingagnon/weakgame-api/db/mysql/users"
-	"github.com/colingagnon/weakgame-api/http/fights"
-	"github.com/colingagnon/weakgame-api/http/monsters"
-	"github.com/colingagnon/weakgame-api/http/products"
-	"github.com/colingagnon/weakgame-api/http/users"
+	fightsdb "github.com/cybermtl/weakgame-api/db/mysql/fights"
+	monstersdb "github.com/cybermtl/weakgame-api/db/mysql/monsters"
+	productsdb "github.com/cybermtl/weakgame-api/db/mysql/products"
+	usersdb "github.com/cybermtl/weakgame-api/db/mysql/users"
+	"github.com/cybermtl/weakgame-api/http/fights"
+	"github.com/cybermtl/weakgame-api/http/monsters"
+	"github.com/cybermtl/weakgame-api/http/products"
+	"github.com/cybermtl/weakgame-api/http/users"
 
 	"database/sql"
 	"net/http"
@@ -20,7 +20,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/howeyc/gopass"
-	"github.com/colingagnon/weakgame-api/db"
+	"github.com/cybermtl/weakgame-api/db"
 	_ "github.com/ziutek/mymysql/godrv"
 )
 

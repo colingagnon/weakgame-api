@@ -12,11 +12,11 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/colingagnon/weakgame-api/db/mysql/products"
-	dbi "github.com/colingagnon/weakgame-api/dbi/products"
-	users "github.com/colingagnon/weakgame-api/db/mysql/users"
-	usersDbi "github.com/colingagnon/weakgame-api/dbi/users"
-	"github.com/colingagnon/weakgame-api/lib"
+	"github.com/cybermtl/weakgame-api/db/mysql/products"
+	dbi "github.com/cybermtl/weakgame-api/dbi/products"
+	users "github.com/cybermtl/weakgame-api/db/mysql/users"
+	usersDbi "github.com/cybermtl/weakgame-api/dbi/users"
+	"github.com/cybermtl/weakgame-api/lib"
 )
 
 // Fetches or creates an account for the user
@@ -129,6 +129,14 @@ func List(res http.ResponseWriter, req *http.Request) {
 			i, _ := strconv.ParseFloat(form_price, 32)
 			parseField := float32(i)
 			filterObject.Price = parsedField
+		}
+
+		if _, ok := req.Form["discount"]; ok {
+			form_discount := req.FormValue("discount")
+			shouldFilter = true
+			i, _ := strconv.Atoi(form_discount)
+			parsedField := int32(i)
+			filterObject.Discount = parsedField
 		}
 
 		if _, ok := req.Form["available"]; ok {

@@ -10,7 +10,7 @@ import (
 	"time"
 	"strings"
 
-	dbi "github.com/colingagnon/weakgame-api/dbi/monsters"
+	dbi "github.com/cybermtl/weakgame-api/dbi/monsters"
 	"is-a-dev.com/autoapi/lib"
 	//"errors"
 )

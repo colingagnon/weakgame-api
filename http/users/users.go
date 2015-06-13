@@ -12,13 +12,13 @@ import (
 	
 	"net/http"
 	
-	"github.com/colingagnon/weakgame-api/lib"
+	"github.com/cybermtl/weakgame-api/lib"
 	
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/colingagnon/weakgame-api/db/mysql/users"
-	dbi "github.com/colingagnon/weakgame-api/dbi/users"
+	"github.com/cybermtl/weakgame-api/db/mysql/users"
+	dbi "github.com/cybermtl/weakgame-api/dbi/users"
 )
 
 func GetLoginInfo(res http.ResponseWriter, req *http.Request) {

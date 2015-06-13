@@ -11,7 +11,7 @@ import (
 	"crypto/sha256"
 	"io"
 	
-	dbi "github.com/colingagnon/weakgame-api/dbi/users"
+	dbi "github.com/cybermtl/weakgame-api/dbi/users"
 	"is-a-dev.com/autoapi/lib"
 	//"errors"
 )

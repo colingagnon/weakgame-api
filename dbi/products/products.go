@@ -20,6 +20,7 @@ type Product struct {
 	Name      string  `json:"name"`
 	Tokens    int32   `json:"tokens"`
 	Price     float32 `json:"price"`
+	Discount  int32   `json:"discount"`
 	// TODO changed from byte[] array that was generated
 	Available string  `json:"available"`
 }

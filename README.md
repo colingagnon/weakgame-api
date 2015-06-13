@@ -9,9 +9,9 @@ WEAKGAME - Is an "almost" fun game that can be used as a training platform or te
 #### Setup
 Once you have GO setup properly, proceed with setup
 ```
-mkdir -p $GOPATH/src/github.com/colingagnon
-cd $GOPATH/src/github.com/colingagnon
-git clone https://github.com/colingagnon/weakgame-api.git
+mkdir -p $GOPATH/src/github.com/cybermtl
+cd $GOPATH/src/github.com/cybermtl
+git clone https://github.com/cybermtl/weakgame-api.git
 cd weakgame-api
 go get github.com/gorilla/mux
 go get github.com/dgrijalva/jwt-go
@@ -35,7 +35,7 @@ mysql -u weakgame -pweakpass weakgame-api < data/weakgame-api.sql
 
 Finally run the binary for the backend
 ```
-cd $GOPATH/src/github.com/colingagnon/weakgame-api
+cd $GOPATH/src/github.com/cybermtl/weakgame-api
 go run bin/main.go -d="weakgame-api" -u="weakgame" -h="localhost" -P="3306"
 ```
 
@@ -53,10 +53,10 @@ go run bin/main.go -d="weakgame-api" -u="weakgame" -h="localhost" -P="3306"
 This repository was originally created to be used in a "hack day" for a project management class.  The students are given 1 working day to try and complete some of the additional features. At this point this is super rough, mostly intentionally, but I could see it being developed as a way to test skills for the interview process, or as a rather tool for current employees.
 
 #### User Stories
-[Check frontend repository](https://github.com/colingagnon/weakgame)
+[Check frontend repository](https://github.com/cybermtl/weakgame)
 
 #### Contributors
-[Colin Gagnon](https://github.com/colingagnon/weakgame)
+[Colin Gagnon](https://github.com/cybermtl/weakgame)
 
 #### Original source
 [angular-brunch-seed-no-fuss](https://github.com/ocombe/angular-brunch-seed-no-fuss)

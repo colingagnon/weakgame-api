@@ -12,8 +12,8 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/colingagnon/weakgame-api/db/mysql/monsters"
-	dbi "github.com/colingagnon/weakgame-api/dbi/monsters"
+	"github.com/cybermtl/weakgame-api/db/mysql/monsters"
+	dbi "github.com/cybermtl/weakgame-api/dbi/monsters"
 )
 
 func List(res http.ResponseWriter, req *http.Request) {
